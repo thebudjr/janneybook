@@ -1,3 +1,5 @@
+
+
 <div class="col-md-3">
 	<div class="thumbnail">
 		<%= link_to user_path(user.username) do %>
@@ -7,7 +9,7 @@
 			<%= link_to user_path(user.username) do %>
 				<h3><%= user.username %></h3>
 			<% end %>
-			<p><%= action_buttons(user) %></p>
+			<p><% if current_user %><%= action_buttons(user) %><% end %></p>
 		</div>
 	</div>
 </div>
