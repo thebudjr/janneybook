@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<%= gravatar_tag post.user.email, size: 20 %> <%= post.user.username %> - about <%= time_ago_in_words(post.created_at) %> ago...
+		<% if current_user && current_user == post.user %>
+			<span class="pull-right"><%= link_to "edit", edit_post_path(post) %> | <%= link_to "x", post_path(post), method: :delete %></span>
+		<% end %>
+	</div>
+	<div class="panel_body">
+		<div class="container">
+			<%= raw(post.content_html) %>
+		</div>
+	</div>
+</div>
