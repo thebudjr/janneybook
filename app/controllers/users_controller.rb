@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 	before_action :set_user, only: :show
   before_action :authenticate_user!, only: [:index]
+  before_action :get_counts, only: [:index]
 
 	def index
     case params[:people]
@@ -26,4 +27,9 @@ class UsersController < ApplicationController
   	def set_user
   		@user = User.find_by(username: params[:id])
   	end
+
+    def get_counts
+      @friend_count = current_user.active_friends.size
+      @pending_count = current_user.pending_friend_requests_to.map(&:user).size
+    end
 end
